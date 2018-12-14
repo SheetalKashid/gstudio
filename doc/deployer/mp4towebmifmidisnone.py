@@ -1,4 +1,4 @@
-#script for converting mp4 to webm files whose mid attribute is None.
+#The following python script converts mp4 to webm files whose mid attribute is None.
 from gnowsys_ndf.ndf.models import *                                                                              
 from gnowsys_ndf.settings import GSTUDIO_EPUBS_LOC_PATH                                                           
 from bs4 import BeautifulSoup                                                                                     
@@ -6,7 +6,8 @@ import re
 import shutil                                                                                                     
 from os import path                                                                                               
 from gnowsys_ndf.ndf.views.tasks import convertVideo                                                              
-announced_nodes=node_collection.find({'member_of':ObjectId('5945b7ca2c47960723f3ee8c')})                          
+ann_unit_gst_name, ann_unit_gst_id = GSystemType.get_gst_name_id(u"announced_unit")
+announced_nodes=node_collection.find({'member_of':ann_unit_gst_id})                          
 #announced units (total 28)
 print("Total announced units:",announced_nodes.count())
 #calculated file nodes                                                           
@@ -28,28 +29,24 @@ for index,each in enumerate(announced_nodes,start=1):
 		filename=au.name
 		file_id=au._id
 		userid=au.created_by
-		#print("file_id:",file_id)                                  
-		#print("filename",filename)
-		#print("userid:",userid)                       
 		mimetype=iffile.mime_type                     
-		#print("mime_type:",mimetype)                 
 		if mimetype=="video/mp4":                     
 			print("mp4 filename:",filename)               
 			print("iffile attr",iffile)               
 			print("-------------")                    
 			print("mid attr:",midd)                   
 			if midd.id == None:
-				#print("ififle:",iffile)
 				print("previous_mid_attr:",midd)                       
 				convertVideo(userid,file_id,filename)
 				print("webm file created")
 				print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 				print("modified_mid_attr",midd)
-				temp = True
+				#temp = True
                                 break;
+                #au.save()
 				
 			else:                    
 				print(midd.id)                        
 	print("0000000000")*5 
-	if temp:
-                break;
+	#if temp:
+        #        break;
