@@ -6,7 +6,7 @@
 ## STEP - I] Replace `data` folder
 - Stop running `gstudio` server
     - `docker stop gstudio`
-  
+  ![1](https://user-images.githubusercontent.com/21193492/50424177-5965e280-0886-11e9-8afd-01397845b69f.png)
  
 
 - [Check]: If server is stopped or not.
