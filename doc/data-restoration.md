@@ -11,8 +11,7 @@
 
 - [Check]: If server is stopped or not.
     + `docker ps`
-  
-
+  ![2](https://user-images.githubusercontent.com/21193492/50424271-9d0d1c00-0887-11e9-8e54-f7333c8dad25.png)
 
     + Above command should not show any entry of container - `gstudio`  
 - From terminal, move to expected data path
