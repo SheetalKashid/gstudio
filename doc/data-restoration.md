@@ -7,12 +7,12 @@
 - Stop running `gstudio` server
     - `docker stop gstudio`
   
-  ![snapshot](/home/sheetal/Pictures/snapss/1.png)
+ 
 
 - [Check]: If server is stopped or not.
     + `docker ps`
   
-  ![snapshot](/home/sheetal/Pictures/snapss/2.png)
+
 
     + Above command should not show any entry of container - `gstudio`  
 - From terminal, move to expected data path
