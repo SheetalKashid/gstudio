@@ -17,7 +17,8 @@
 - From terminal, move to expected data path
     - `cd </path/where/data/is/mounted>`
   
-  ![snapshot](/home/sheetal/Pictures/snapss/2a.png)
+  ![2a](https://user-images.githubusercontent.com/21193492/50424406-f9bd0680-0888-11e9-9737-9dd00140fb37.png)
+
 
 - Rename existing data folder with existing school *server-id*.
     + e.g: `data` --> `data-mz1`
@@ -70,19 +71,20 @@
     
     + Next step is to import the `mz-9` users into postgres. To do so, we need to find the latest postgres dump sql file named as **"pg_dump_all.sql"** which is found at following path: `/data/postgres-dump/pg_dump_all.sql`
   
-  ![snapshot](/home/sheetal/Pictures/snapss/11.png)
+
+![11](https://user-images.githubusercontent.com/21193492/50424393-f0339e80-0888-11e9-9519-6e8bef2d7ce7.png)
 
     + Restore the `mz-9` users into postgres database by following command:
   
-  ![snapshot](/home/sheetal/Pictures/snapss/13.png)
+![13](https://user-images.githubusercontent.com/21193492/50424395-f0cc3500-0888-11e9-8ea5-090befae3f97.png)
 
     + Result of Restoration: The following snapshot display that the `mz-9` users has been successfully restored:
   
-  ![snapshot](/home/sheetal/Pictures/snapss/14.png)
+![14](https://user-images.githubusercontent.com/21193492/50424397-f0cc3500-0888-11e9-9a31-3a50d2997f33.png)
 
     + To view the comments of the `mz-9` school server:
   
-  ![snapshot](/home/sheetal/Pictures/snapss/15.png)
+![15](https://user-images.githubusercontent.com/21193492/50424398-f164cb80-0888-11e9-90a3-bfe757677616.png)
   
   **note**: Earlier it had displayed the error since `mz-9` users were not restored at step I.
 
@@ -90,7 +92,7 @@
 ## STEP - III] Replace settings files
 - To login with the `mz-9` user, we need to replace the configuration file i.e. `settings` file ( which includes both local_settings.py and server_settings.py):
   
-  ![snapshot](/home/sheetal/Pictures/snapss/16.png)
+![16](https://user-images.githubusercontent.com/21193492/50424399-f164cb80-0888-11e9-9cb2-38e3d6629d9c.png)
 
 
 ## Post Restoration Checkpoints:
