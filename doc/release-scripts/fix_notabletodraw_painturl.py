@@ -13,7 +13,7 @@ Hence this may not work for every server
 
 
 import re
-from gnowsys_ndf.ndf.models import node_collection,Node
+from gnowsys_ndf.ndf.models import node_collection,triple_collection,Node
 from bs4 import BeautifulSoup  
 from bson import ObjectId
 '''To identify the href without "/"'''
@@ -42,7 +42,7 @@ for index,each_nd in enumerate(grgsystmnds,start =1):
        if findflg:
            for link in findflg:
                linkaddr = link.get("href")
-               if re.match(regx1,linkaddr):
+               if linkaddr and re.match(regx1,linkaddr):
                    #print "Before:",linkaddr
                    if linkaddr.endswith('n='):
                        flag = True
