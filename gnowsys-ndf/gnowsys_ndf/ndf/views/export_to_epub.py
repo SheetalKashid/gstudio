@@ -21,7 +21,6 @@ oebps_path = None
 tool_mapping = {}
 # global epub_root
 # global epub_name
-# epub_root = os.path.join(GSTUDIO_EPUBS_LOC_PATH, epub_name)
 with open("/static/ndf/epub/tool_mapping.json", "r") as tool_paths:
     global tool_mapping
     tool_mapping = json.loads(tool_paths.read())
@@ -118,7 +117,6 @@ def create_update_content_file(file_name_wo_ext, file_loc, media_type,  epub_nam
     """
     
     file_name_w_ext = file_name_wo_ext
-    #print(file_name_wo_ext)
     file_path = os.path.join(file_loc,file_name_wo_ext)
     #print(file_path)
     if not is_non_html:
@@ -126,11 +124,9 @@ def create_update_content_file(file_name_wo_ext, file_loc, media_type,  epub_nam
         #print(file_path)
         #creates a xhtml file for each activity under that lesson
         file_name_w_ext = file_name_wo_ext + ".xhtml"
-        #print(file_name_w_ext)
     soup = None
     with open("/static/ndf/epub/content.opf", "r") as base_content_pkg_file:
         html_doc = base_content_pkg_file.read()
-        #print(html_doc)
         soup = BeautifulSoup(html_doc, 'lxml')
         #print(soup)
 
@@ -183,8 +179,6 @@ def update_content_metadata(node_id, date_value, epub_name):
 def copy_file_and_update_content_file(file_node, source_ele, src_val, epub_name):
     mimetype_val = file_node.if_file.mime_type.lower()
     print(mimetype_val)
-    """if mimetype_val=="video/webm":
-        print("**********************webm*******************")"""
     # mimetype can be audio|video|image
     # file_name = slugify(file_node.name) + "." + file_extension
     file_name = file_node.name
@@ -448,31 +442,16 @@ def epub_dump(path, ziph):
             absname = os.path.abspath(os.path.join(root, file))
             arcname = absname[len(abs_src) + 1:]
             ziph.write(absname, arcname)
-#create_epub is to create a lesson level epub file with .epub extension. 
-#for eg: /root/gstudio_data/gstudio-epubs/lesson-1-motion-of-the-moon_2018-11-14t212804290853.epub
 
 def create_subfolders(root,subfolder_names_list):
     for subfolder in subfolder_names_list:
         #print(subfolder)
         v=os.makedirs(os.path.join(root, subfolder))
         #print(type(v))
-    ######################Demo############
-"""
-    v=os.path.join(epub_root,"OEBPS")
-    #print(v)
-    for each in oebps_files:
-        path_v= os.path.join(v,each)
-         # print(path_v+"prev")
-        if os.path.isdir(path_v):
-            print("Blah")
-        else:
-            direct=os.makedirs(path_v,0755)
-            print(direct)
-"""
 
-    ######################End of Demo###########
-
-
+        
+#create_epub is to create a lesson level epub file with .epub extension. 
+#for eg: /root/gstudio_data/gstudio-epubs/lesson-1-motion-of-the-moon_2018-11-14t212804290853.epub
 def create_epub(node_obj):
     epub_disp_name = None
     global epub_name
