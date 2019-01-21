@@ -550,6 +550,7 @@ def get_files_for_reply(rep_id,groupid):
 @register.assignment_tag
 def get_all_replies(parent):
 	 ex_reply=""
+	 #print "**************Get all replies",parent._id
 	 if parent:
 		 ex_reply = node_collection.find({'$and':[{'_type':'GSystem'},{'prior_node':ObjectId(parent._id)}],'status':{'$nin':['HIDDEN']}})
 		 ex_reply.sort('created_at',-1)
@@ -589,18 +590,20 @@ def get_attribute_value(node_id, attr_name, get_data_type=False, use_cache=True)
     attr_val = ""
     node_attr = data_type = None
     if node_id:
-        # print "\n attr_name: ", attr_name
+        #print "\n attr_name: ", attr_name
         gattr = node_collection.one({'_type': 'AttributeType', 'name': unicode(attr_name) })
         if get_data_type:
             data_type = gattr.data_type
         if gattr: # and node  :
             node_attr = triple_collection.find_one({'_type': "GAttribute", "subject": ObjectId(node_id), 'attribute_type': gattr._id, 'status': u"PUBLISHED"})
     if node_attr:
+    	#print "inside node_attr:", node_attr.object_value
         attr_val = node_attr.object_value
-        # print "\n here: ", attr_name, " : ", type(attr_val), " : ", node_id
+        #print "\n here: ", attr_name, " : ", type(attr_val), " : ", node_id
     if get_data_type:
         return {'value': attr_val, 'data_type': data_type}
     cache.set(cache_key, attr_val, 60 * 60)
+    #print(attr_val)
     return attr_val
 
 
@@ -1173,7 +1176,7 @@ def get_disc_replies( oid, group_id, global_disc_all_replies, level=1 ):
 	# to acces global_disc_rep_counter as global and not as local
 	# global global_disc_rep_counter
 	# global global_disc_all_replies
-	# print "\n\n thr_rep",thr_rep.count()
+	#print "\n\n thr_rep",thr_rep.count()
 
 	if thr_rep and (thr_rep.count() > 0):
 
@@ -1206,11 +1209,11 @@ def get_disc_replies( oid, group_id, global_disc_all_replies, level=1 ):
 				# temp_list.append(temp_disc_reply)
 				# print "\n\n", temp_list
 
-			# print "\n\n---- : ", level, " : ", each.content_org, temp_disc_reply
+			#print "\n\n---- : ",global_disc_all_replies
 			# get_disc_replies(each._id, (level+1), temp_list)
 			get_disc_replies(each._id, group_id, global_disc_all_replies, (level+1) )
 
-	# print global_disc_all_replies
+	 #print global_disc_all_replies
 	return global_disc_all_replies
 # global_disc_all_replies = []
 
