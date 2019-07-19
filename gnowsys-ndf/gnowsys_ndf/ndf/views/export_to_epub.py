@@ -339,7 +339,7 @@ def build_html(path,obj, epub_name):
     """
     soup = None
     for each_obj in obj.values():
-        name = each_obj['name'].strip()
+        name = each_obj['altnames'].strip()
         #print(name)
         name_slugified = slugify(name)
         print(name_slugified)
